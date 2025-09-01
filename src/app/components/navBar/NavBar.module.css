@@ -1,0 +1,61 @@
+.navBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+  
+.Menu {
+    display: flex;
+    gap: 35px;
+}
+  
+.Menu a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+  
+.Menu a:hover {
+    color: #1976d2;
+}
+  
+.NavButtons {
+    display: flex;
+    gap: 10px; 
+}
+
+.NavButtons button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.Btn {
+    color: white;
+    background: black;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+  
+.Btn:hover {
+    opacity: 0.85;
+}
+
+.divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+    margin: 0 20px;
+}

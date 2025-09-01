@@ -1,0 +1,193 @@
+.languageDropdown {
+    position: relative;
+    width: 100%;
+  }
+  
+  .dropdownContainer {
+    position: relative;
+  }
+  
+  .dropdownTrigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    background: #333;
+    border: 1px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .dropdownTrigger:hover {
+    border-color: #9ca3af;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdownTrigger:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  /* Estilos para o SVG do globo */
+  .dropdownTrigger svg:first-child {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-right: 8px;
+  }
+  
+  .selectedLanguage {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+  
+  .name {
+    font-weight: 500;
+  }
+  
+  .dropdownArrow {
+    color: white;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  
+  .dropdownArrow.open {
+    transform: rotate(180deg);
+  }
+  
+  .dropdownMenu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #333;
+    border: 1px solid white;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+    animation: dropdownSlideIn 0.2s ease-out;
+  }
+  
+  @keyframes dropdownSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .dropdownItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    font-size: 14px;
+    color: white;
+    text-align: left;
+    gap: 8px;
+  }
+  
+  .dropdownItem:hover {
+    background-color: #444;
+  }
+  
+  .dropdownItem.selected {
+    background-color: #555;
+    color: #fff;
+  }
+  
+  .dropdownItem .name {
+    flex: 1;
+    font-weight: 500;
+  }
+  
+  .checkIcon {
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  /* Scrollbar personalizado para o menu dropdown */
+  .dropdownMenu::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .dropdownMenu::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+  }
+  
+  .dropdownMenu::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+  
+  .dropdownMenu::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .dropdownTrigger {
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+    
+    .dropdownItem {
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+    
+    .dropdownTrigger svg:first-child {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  
+  /* Estados de foco para acessibilidade */
+  .dropdownItem:focus {
+    outline: none;
+    background-color: #444;
+  }
+  
+  /* Animação de entrada para cada item */
+  .dropdownItem {
+    animation: itemSlideIn 0.1s ease-out;
+    animation-fill-mode: both;
+  }
+  
+  .dropdownItem:nth-child(1) { animation-delay: 0.05s; }
+  .dropdownItem:nth-child(2) { animation-delay: 0.1s; }
+  .dropdownItem:nth-child(3) { animation-delay: 0.15s; }
+  .dropdownItem:nth-child(4) { animation-delay: 0.2s; }
+  .dropdownItem:nth-child(5) { animation-delay: 0.25s; }
+  .dropdownItem:nth-child(6) { animation-delay: 0.3s; }
+  
+  @keyframes itemSlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
