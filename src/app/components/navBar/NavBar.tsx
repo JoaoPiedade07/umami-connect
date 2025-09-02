@@ -2,19 +2,83 @@
 import Image from "next/image";
 import styles from "./NavBar.module.css";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 
 export default function NavBar() {
 
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const handleUserClick = ()  => {
     router.push("/auth/signIn");
   };
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      // Aqui você pode implementar a lógica de busca
+      console.log("Searching for:", searchQuery);
+      // Exemplo: router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
   return (
     <div className={styles.navBar}>
       <Image src="/Logo.png" alt="Logo" width={120} height={70} />
+
+      {/* Barra de Pesquisa */}
+      <div className={styles.searchContainer}>
+        <form onSubmit={handleSearch} className={styles.searchForm}>
+          <div className={`${styles.searchInputContainer} ${isSearchFocused ? styles.focused : ''}`}>
+            <svg
+              className={styles.searchIcon}
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input
+              type="text"
+              placeholder="Pesquisar receitas, chefs..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setIsSearchFocused(false)}
+              className={styles.searchInput}
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className={styles.clearButton}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
       <div className={styles.Menu}>
         <a href="/">Home</a>
         <a href="/about">Classes</a>
