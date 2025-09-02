@@ -9,24 +9,94 @@
     align-items: center;
     justify-content: space-between;
     z-index: 1000;
+    gap: 20px;
 }
-  
+
+/* Barra de Pesquisa */
+.searchContainer {
+    flex: 1;
+    max-width: 400px;
+    margin: 0 20px;
+}
+
+.searchForm {
+    width: 100%;
+}
+
+.searchInputContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.searchInputContainer.focused {
+    border-color: #1976d2;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.15);
+}
+
+.searchIcon {
+    color: #6c757d;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.searchInput {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: #333;
+    padding: 4px 0;
+}
+
+.searchInput::placeholder {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.clearButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6c757d;
+    padding: 4px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    margin-left: 8px;
+}
+
+.clearButton:hover {
+    background: #e9ecef;
+    color: #495057;
+}
+
 .Menu {
     display: flex;
     gap: 35px;
 }
-  
+
 .Menu a {
     text-decoration: none;
     color: black;
     font-weight: 500;
     transition: color 0.3s;
 }
-  
+
 .Menu a:hover {
     color: #1976d2;
 }
-  
+
 .NavButtons {
     display: flex;
     gap: 10px; 
@@ -45,7 +115,7 @@
     align-items: center;
     gap: 8px;
 }
-  
+
 .Btn:hover {
     opacity: 0.85;
 }
@@ -58,4 +128,45 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
     margin: 0 20px;
+}
+
+/* Responsividade para a barra de pesquisa */
+@media (max-width: 768px) {
+    .navBar {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .searchContainer {
+        order: 3;
+        flex-basis: 100%;
+        max-width: none;
+        margin: 10px 0 0 0;
+    }
+    
+    .Menu {
+        gap: 20px;
+    }
+    
+    .Menu a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navBar {
+        padding: 10px 15px;
+    }
+    
+    .Menu {
+        gap: 15px;
+    }
+    
+    .Menu a {
+        font-size: 13px;
+    }
+    
+    .NavButtons button {
+        padding: 8px 15px;
+    }
 }
