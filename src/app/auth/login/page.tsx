@@ -1,26 +1,23 @@
-"use client";
-import { useRouter } from "next/navigation";
+import { SignIn } from '@clerk/nextjs';
 
-export default function Login() {
-
-    const router = useRouter();
-    const handleUserClick = () => {
-        router.push("/auth/login");
-    }
-
-    return (
-        <div style={{
-            minHeight: '100vh',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '2rem',
-            gap: '1rem'
-        }}>
-            <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Log In Page</h1>
-            <p style={{ fontSize: '1.1rem', textAlign: 'center' }}>Welcome to the sign in page!</p>
-            <button onClick={handleUserClick}>Sing In</button>
-        </div>
-    );
+export default function LoginPage() {
+  return (
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '2rem'
+    }}>
+      <SignIn 
+        appearance={{
+          elements: {
+            formButtonPrimary: 'bg-blue-600 hover:bg-blue-700 text-sm normal-case',
+          }
+        }}
+        redirectUrl="/dashboard"
+        signUpUrl="/auth/signup(.*)"
+      />
+    </div>
+  );
 }
