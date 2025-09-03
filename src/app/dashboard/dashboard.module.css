@@ -1,0 +1,76 @@
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+  
+.card {
+    background-color: #ffffff;
+    padding: 32px 24px;
+    border-radius: 16px;
+    width: 320px;
+    height: 300px;
+    text-align: left; 
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: #d1d5db;
+} 
+
+  
+.divider {
+    border: none;           
+    height: 1px;            
+    background-color: #e9ecef; 
+    width: 100%;             
+    margin: 24px 0;      
+    border-radius: 1px; 
+}
+
+.cardBtn {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: auto;
+    flex-direction: row;
+    position: absolute;
+    bottom: 32px;
+    left: 24px;
+    right: 24px;
+}
+
+.cardBtn button {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn {
+    background-color: #171717;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn:hover {
+    opacity: 0.5;
+}
