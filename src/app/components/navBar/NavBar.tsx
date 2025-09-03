@@ -12,7 +12,7 @@ export default function NavBar() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const handleUserClick = ()  => {
-    router.push("/auth/signIn");
+    router.push("/auth/login");
   };
 
   const handleSearch = (e: React.FormEvent) => {
