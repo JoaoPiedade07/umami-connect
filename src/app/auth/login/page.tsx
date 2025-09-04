@@ -16,7 +16,7 @@ export default function LoginPage() {
           }
         }}
         redirectUrl="/dashboard"
-        signUpUrl="/auth/signup(.*)"
+        signUpUrl="/auth/signup"
       />
     </div>
   );
