@@ -1,0 +1,625 @@
+/* Page Layout - Consistent with main page */
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 200px);
+  padding: 40px 80px;
+  gap: 64px;
+  font-family: var(--font-geist-sans);
+  margin: 0;
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+
+    --button-primary-hover: #ccc;
+    --button-secondary-hover: #1a1a1a;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  flex: 1;
+}
+
+/* Hero Section */
+.heroSection {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/sushi.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  padding: 80px 60px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.heroContent h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  line-height: 1.2;
+}
+
+.heroContent p {
+  font-size: 1.4rem;
+  margin-bottom: 48px;
+  opacity: 0.95;
+  line-height: 1.6;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heroStats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 32px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.statLabel {
+  font-size: 1rem;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Categories Section */
+.categoriesSection {
+  text-align: center;
+}
+
+.categoriesSection h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 32px;
+}
+
+.categoriesFilter {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.categoryButton {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  color: #374151;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.categoryButton:hover {
+  border-color: #d1d5db;
+  background: #f9fafb;
+  transform: translateY(-2px);
+}
+
+.categoryButton.active {
+  background: #171717;
+  border-color: #171717;
+  color: white;
+  box-shadow: 0 4px 12px rgba(23, 23, 23, 0.3);
+}
+
+/* Section Headers */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sectionHeader h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.sectionHeader p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Courses Section */
+.coursesSection {
+  width: 100%;
+}
+
+.coursesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 32px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Course Card Styles */
+.courseCard {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.courseCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  border-color: #e0e0e0;
+}
+
+.courseImageContainer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.courseImage {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.courseCard:hover .courseImage {
+  transform: scale(1.05);
+}
+
+.courseLevel {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+.courseContent {
+  padding: 24px;
+}
+
+.courseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 16px;
+}
+
+.courseTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.coursePrice {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #171717;
+  white-space: nowrap;
+}
+
+.courseDescription {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.courseInstructor {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.courseStats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 193, 7, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.star {
+  font-size: 16px;
+}
+
+.ratingNumber {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.views, .duration {
+  color: #666;
+  font-size: 13px;
+  font-weight: 500;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.courseFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.studentsCount {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.enrollButton {
+  background: #171717;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.enrollButton:hover {
+  background: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(23, 23, 23, 0.3);
+}
+
+/* Chefs Section */
+.chefsSection {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 20px;
+  padding: 60px 40px;
+  margin-top: 32px;
+}
+
+.chefsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.chefCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.chefCard:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.chefImageContainer {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 3px solid #f3f4f6;
+}
+
+.chefImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chefInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.chefName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.chefSpecialty {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.chefRating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.chefRatingStars {
+  display: flex;
+  gap: 2px;
+}
+
+.chefRatingStars span {
+  font-size: 0.8rem;
+}
+
+.chefRatingNumber {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.chefStats {
+  display: flex;
+  gap: 16px;
+}
+
+.chefStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.chefStatNumber {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.chefStatLabel {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .coursesGrid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+  }
+  
+  .chefsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 32px;
+    gap: 40px;
+  }
+  
+  .main {
+    gap: 32px;
+  }
+  
+  .heroSection {
+    padding: 60px 40px;
+  }
+  
+  .heroContent h1 {
+    font-size: 2.5rem;
+  }
+  
+  .heroContent p {
+    font-size: 1.2rem;
+  }
+  
+  .heroStats {
+    gap: 32px;
+  }
+  
+  .statNumber {
+    font-size: 2rem;
+  }
+  
+  .categoriesFilter {
+    gap: 12px;
+  }
+  
+  .categoryButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .coursesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .courseCard {
+    max-width: none;
+  }
+  
+  .courseImage {
+    height: 200px;
+  }
+  
+  .courseHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .coursePrice {
+    font-size: 1.3rem;
+  }
+  
+  .courseStats {
+    gap: 12px;
+  }
+  
+  .chefsSection {
+    padding: 40px 24px;
+  }
+  
+  .chefsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .chefCard {
+    padding: 20px;
+    gap: 16px;
+  }
+  
+  .chefImageContainer {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .chefName {
+    font-size: 1.1rem;
+  }
+  
+  .chefSpecialty {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 16px 20px;
+  }
+  
+  .heroSection {
+    padding: 40px 24px;
+  }
+  
+  .heroContent h1 {
+    font-size: 2rem;
+  }
+  
+  .heroContent p {
+    font-size: 1rem;
+  }
+  
+  .heroStats {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .categoriesFilter {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .categoryButton {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .courseContent {
+    padding: 20px;
+  }
+  
+  .courseStats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .courseFooter {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .enrollButton {
+    width: 100%;
+  }
+  
+  .chefsSection {
+    padding: 32px 20px;
+  }
+  
+  .chefCard {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .chefImageContainer {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .chefStats {
+    justify-content: center;
+  }
+}
