@@ -1,76 +1,419 @@
-.cardContainer {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-  
-.card {
-    background-color: #ffffff;
-    padding: 32px 24px;
-    border-radius: 16px;
-    width: 320px;
-    height: 300px;
-    text-align: left; 
-    border: 1px solid #e9ecef;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+/* Page Layout - Consistent with main page */
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 200px);
+  padding: 40px 80px;
+  gap: 64px;
+  font-family: var(--font-geist-sans);
+  margin: 0;
+  width: 100%;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    border-color: #d1d5db;
-} 
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
 
-  
-.divider {
-    border: none;           
-    height: 1px;            
-    background-color: #e9ecef; 
-    width: 100%;             
-    margin: 24px 0;      
-    border-radius: 1px; 
+    --button-primary-hover: #ccc;
+    --button-secondary-hover: #1a1a1a;
+  }
 }
 
-.cardBtn {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    margin-top: auto;
-    flex-direction: row;
-    position: absolute;
-    bottom: 32px;
-    left: 24px;
-    right: 24px;
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
 }
 
-.cardBtn button {
-    flex: 1;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: none;
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+/* Dashboard Header Styles */
+.dashboardHeader {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 32px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
+.dashboardHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/sushi.jpg') center/cover;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.dashboardHeader h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.dashboardHeader p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* Dashboard Content */
+.dashboardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 16px;
+}
+
+/* Classes Grid */
+.classesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* Course Card Styles - Consistent with main page */
+.courseCard {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.courseCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: #e0e0e0;
+}
+
+.courseImageContainer {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.courseImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.courseCard:hover .courseImage {
+  transform: scale(1.05);
+}
+
+.courseContent {
+  padding: 0 4px;
+}
+
+.courseTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.courseStats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 193, 7, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.star {
+  font-size: 18px;
+}
+
+.ratingNumber {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.views, .duration {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* Progress Bar */
+.progressContainer {
+  margin-top: 16px;
+}
+
+.progressLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: black;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Minimalist Chef Cards */
+.chefCard {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 100px;
+}
+
+.chefCard:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chefImageContainer {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #f3f4f6;
+}
+
+.chefImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chefInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.chefName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.chefSpecialty {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.chefRating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chefRatingStars {
+  display: flex;
+  gap: 1px;
+}
+
+.chefRatingStars span {
+  font-size: 0.75rem;
+}
+
+.chefRatingNumber {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Chef Grid - Horizontal Layout */
+.chefsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Sign Out Button */
 .btn {
     background-color: #171717;
     color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 8px;   
 }
 
-.btn:hover {
-    opacity: 0.5;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboardHeader {
+    padding: 32px 24px;
+    margin-bottom: 24px;
+  }
+  
+  .dashboardHeader h1 {
+    font-size: 2rem;
+  }
+  
+  .dashboardHeader p {
+    font-size: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .classesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .courseCard {
+    padding: 20px;
+  }
+  
+  .courseImage {
+    height: 180px;
+  }
+  
+  .courseTitle {
+    font-size: 1.2rem;
+  }
+  
+  .courseStats {
+    gap: 12px;
+  }
+  
+  .chefsGrid {
+    max-width: 100%;
+  }
+  
+  .chefCard {
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .chefImageContainer {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .chefName {
+    font-size: 1rem;
+  }
+  
+  .chefSpecialty {
+    font-size: 0.8rem;
+  }
 }
+
+@media (max-width: 480px) {
+  .dashboardHeader {
+    padding: 24px 20px;
+  }
+  
+  .dashboardHeader h1 {
+    font-size: 1.8rem;
+  }
+  
+  .courseStats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .rating, .views, .duration {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  
+  .chefCard {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .chefImageContainer {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .chefName {
+    font-size: 0.95rem;
+  }
+  
+  .chefSpecialty {
+    font-size: 0.75rem;
+  }
+  
+  .chefRatingStars span {
+    font-size: 0.7rem;
+  }
+  
+  .chefRatingNumber {
+    font-size: 0.8rem;
+  }
+}  

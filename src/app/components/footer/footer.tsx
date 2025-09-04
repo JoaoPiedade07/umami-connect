@@ -18,7 +18,7 @@ export default function Footer() {
                 <a>Privacy Policy</a>
                 <a>Terms of Service</a>
                 <a>Contact Us</a>
-                <a>Follow Us</a>
+                <a href="https://www.instagram.com/_.joao_06/" target="_blank" rel="noopener noreferrer">Follow Us</a>
             </div>
             <div className={styles.footerSection}>
                 <h3>Products</h3>

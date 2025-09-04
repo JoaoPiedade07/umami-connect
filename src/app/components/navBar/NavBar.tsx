@@ -81,9 +81,8 @@ export default function NavBar() {
       </div>
       <div className={styles.Menu}>
         <a href="/">Home</a>
-        <a href="/about">Classes</a>
-        <a href="/about">Chefs</a>
-        <a href="/about">Classes</a>
+        <a href="/classes">Classes</a>
+        <a href="/chefs">Chefs</a>
         <a href="/contact">Contact</a>
       </div>
       <div className={styles.NavButtons}>
