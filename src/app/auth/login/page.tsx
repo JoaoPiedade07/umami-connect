@@ -1,6 +1,13 @@
+"use client";
 import { SignIn } from '@clerk/nextjs';
+import { useEffect } from 'react';
 
 export default function LoginPage() {
+  useEffect(() => {
+    // Remove flag de chef quando faz login normal
+    localStorage.removeItem('isChefLogin');
+  }, []);
+
   return (
     <div style={{
       minHeight: '100vh',
