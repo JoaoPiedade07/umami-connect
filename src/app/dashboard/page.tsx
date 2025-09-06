@@ -18,7 +18,7 @@ export default async function DashboardPage() {
       <main className={styles.main}>
         {/* Dashboard Header */}
         <div className={styles.dashboardHeader}>
-          <h1>Bem-vindo, {user?.username}!</h1>
+          <h1>{user?.username}!</h1>
           <p>Estudante • Continue sua jornada culinária</p>
         </div>
 
