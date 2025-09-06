@@ -1,6 +1,13 @@
+"use client";
 import { SignUp } from '@clerk/nextjs';
+import { useEffect } from 'react';
 
 export default function ChefSignUpPage() {
+  useEffect(() => {
+    // Define flag no localStorage para indicar que é signup de chef
+    localStorage.setItem('isChefLogin', 'true');
+  }, []);
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -23,7 +30,7 @@ export default function ChefSignUpPage() {
           }
         }}
         redirectUrl="/chef/dashboard"
-        signInUrl="/auth/chef/signup"
+        signInUrl="/auth/chef/login"
       />
     </div>
   );
