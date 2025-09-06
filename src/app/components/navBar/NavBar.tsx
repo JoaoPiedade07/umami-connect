@@ -2,18 +2,54 @@
 import Image from "next/image";
 import styles from "./NavBar.module.css";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useUser } from '@clerk/nextjs';
 
 export default function NavBar() {
 
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isChef, setIsChef] = useState(false);
+  const { user, isLoaded } = useUser();
+
+  // Verifica se o usuário é chef
+  useEffect(() => {
+    const checkChefStatus = async () => {
+      if (user) {
+        // Verifica através dos metadados do Clerk
+        const roleFromMetadata = user.publicMetadata?.role === 'CHEF';
+        
+        // Verifica através da URL atual (se está em rota de chef)
+        const isOnChefRoute = window.location.pathname.includes('/chef/');
+        
+        // Verifica se o usuário fez login através da rota de chef
+        const isChefLogin = localStorage.getItem('isChefLogin') === 'true';
+        
+        setIsChef(roleFromMetadata || isOnChefRoute || isChefLogin);
+      }
+    };
+
+    checkChefStatus();
+  }, [user]);
 
   const handleUserClick = ()  => {
     router.push("/auth/login");
   };
+
+// Se a pessoa que esta logada é um chef então na navbar vai para o camigo de chef se não vai para o user dashboard
+  const handleDashboard = () => {
+      if(!user) {
+        router.push("/auth/login");
+      }
+      else {
+        if(isChef) {
+          router.push("/chef/dashboard");
+        } else {
+          router.push("/dashboard");
+        }
+      }
+  }
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,6 +117,7 @@ export default function NavBar() {
       </div>
       <div className={styles.Menu}>
         <a href="/">Home</a>
+        <a href="#" onClick={(e) => { e.preventDefault(); handleDashboard(); }}>Dashboard</a>
         <a href="/classes">Classes</a>
         <a href="/chefs">Chefs</a>
         <a href="/contact">Contact</a>
