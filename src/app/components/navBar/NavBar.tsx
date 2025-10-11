@@ -12,6 +12,7 @@ export default function NavBar() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isChef, setIsChef] = useState(false);
   const { user, isLoaded } = useUser();
+  const tabOpen = useState();
 
   // Verifica se o usuário é chef
   useEffect(() => {
@@ -62,7 +63,7 @@ export default function NavBar() {
 
   return (
     <div className={styles.navBar}>
-      <Image src="/Logo.png" alt="Logo" width={120} height={70} />
+      <a href="/"><Image src="/Logo.png" alt="Logo" width={120} height={70} /></a>
 
       {/* Barra de Pesquisa */}
       <div className={styles.searchContainer}>
