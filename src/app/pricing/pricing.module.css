@@ -1,0 +1,273 @@
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    padding: 32px 24px;
+    border-radius: 16px;
+    width: 320px;
+    height: 520px;
+    text-align: left; 
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: #d1d5db;
+  } 
+
+  
+  .divider {
+    border: none;           
+    height: 1px;            
+    background-color: #e9ecef; 
+    width: 100%;             
+    margin: 24px 0;      
+    border-radius: 1px; 
+  }
+
+.cardBtn {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: auto;
+    flex-direction: row;
+    position: absolute;
+    bottom: 32px;
+    left: 24px;
+    right: 24px;
+}
+
+.cardBtn button {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.Btn {
+    background-color: #171717;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.Btn:hover {
+    background-color: #383838;
+    transform: translateY(-1px);
+}
+
+.card a {
+    cursor: pointer;
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    background-color: transparent;
+    font-weight: 500;
+}
+
+.card a:hover {
+    color: #171717;
+    border-color: #d1d5db;
+    background-color: #f9fafb;
+}
+
+.PricingList {
+    margin: 16px 0 80px 0;
+}
+
+.PricingList p {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+    color: #374151;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.CheckIcon {
+    color: #10b981;
+    flex-shrink: 0;
+}
+
+/* Estilos para títulos dos cards */
+.card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #171717;
+    margin: 0 0 8px 0;
+}
+
+.card h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #171717;
+    margin: 0 0 16px 0;
+}
+
+.card p {
+    color: #6b7280;
+    font-size: 14px;
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+/* Estilos para a estrutura da página */
+.pricingContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #171717;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.section {
+    margin-bottom: 80px;
+}
+
+.sectionTitle {
+    font-size: 32px;
+    font-weight: 600;
+    color: #171717;
+    margin: 0 0 40px 0;
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .pricingContainer {
+        padding: 20px 16px;
+    }
+    
+    .header {
+        margin-bottom: 48px;
+    }
+    
+    .title {
+        font-size: 36px;
+    }
+    
+    .subtitle {
+        font-size: 18px;
+    }
+    
+    .section {
+        margin-bottom: 60px;
+    }
+    
+    .sectionTitle {
+        font-size: 28px;
+        margin-bottom: 32px;
+    }
+    .cardContainer {
+        padding: 20px 16px;
+        gap: 16px;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 400px;
+        padding: 24px 20px;
+        height: 500px;
+    }
+    
+    .cardBtn {
+        bottom: 24px;
+        left: 20px;
+        right: 20px;
+    }
+    
+    .card h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 20px 16px;
+        height: 480px;
+    }
+    
+    .cardBtn {
+        bottom: 20px;
+        left: 16px;
+        right: 16px;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .cardBtn button {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .card a {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .card h2 {
+        font-size: 24px;
+    }
+    
+    .card h4 {
+        font-size: 16px;
+    }
+}

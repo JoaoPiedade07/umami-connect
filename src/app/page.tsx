@@ -9,7 +9,7 @@ export default function Home() {
 
   const router = useRouter();
     const handleUserClick = () => {
-        router.push("/components/pricing");
+        router.push("/pricing");
         console.log("Tela Pricing");
     }
   
