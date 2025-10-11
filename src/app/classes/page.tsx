@@ -135,6 +135,57 @@ export default function ClassesPage() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+
+        {/* Popular Chefs Section */}
+        <div className={styles.chefsSection}>
+          <div className={styles.sectionHeader}>
+            <h2>Nossos Chefs Populares</h2>
+            <p>Conheça os especialistas que vão te ensinar</p>
+          </div>
+          
+          <div className={styles.chefsGrid}>
+            {popularChefs.map((chef, index) => (
+              <div key={index} className={styles.chefCard}>
+                <div className={styles.chefImageContainer}>
+                  <Image
+                    src={chef.image}
+                    alt={chef.name}
+                    width={80}
+                    height={80}
+                    className={styles.chefImage}
+                  />
+                </div>
+                
+                <div className={styles.chefInfo}>
+                  <h3 className={styles.chefName}>{chef.name}</h3>
+                  <p className={styles.chefSpecialty}>{chef.specialty}</p>
+                  
+                  <div className={styles.chefRating}>
+                    <div className={styles.chefRatingStars}>
+                      <span>⭐</span>
+                      <span>⭐</span>
+                      <span>⭐</span>
+                      <span>⭐</span>
+                      <span>⭐</span>
+                    </div>
+                    <span className={styles.chefRatingNumber}>{chef.rating}</span>
+                  </div>
+                  
+                  <div className={styles.chefStats}>
+                    <div className={styles.chefStat}>
+                      <span className={styles.chefStatNumber}>{chef.courses}</span>
+                      <span className={styles.chefStatLabel}>Cursos</span>
+                    </div>
+                    <div className={styles.chefStat}>
+                      <span className={styles.chefStatNumber}>{chef.students}</span>
+                      <span className={styles.chefStatLabel}>Estudantes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
         
         {/* Categories Filter */}
         <div className={styles.categoriesSection}>
@@ -211,57 +262,6 @@ export default function ClassesPage() {
                     <button className={styles.enrollButton}>
                       Inscrever-se
                     </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Popular Chefs Section */}
-        <div className={styles.chefsSection}>
-          <div className={styles.sectionHeader}>
-            <h2>Nossos Chefs Populares</h2>
-            <p>Conheça os especialistas que vão te ensinar</p>
-          </div>
-          
-          <div className={styles.chefsGrid}>
-            {popularChefs.map((chef, index) => (
-              <div key={index} className={styles.chefCard}>
-                <div className={styles.chefImageContainer}>
-                  <Image
-                    src={chef.image}
-                    alt={chef.name}
-                    width={80}
-                    height={80}
-                    className={styles.chefImage}
-                  />
-                </div>
-                
-                <div className={styles.chefInfo}>
-                  <h3 className={styles.chefName}>{chef.name}</h3>
-                  <p className={styles.chefSpecialty}>{chef.specialty}</p>
-                  
-                  <div className={styles.chefRating}>
-                    <div className={styles.chefRatingStars}>
-                      <span>⭐</span>
-                      <span>⭐</span>
-                      <span>⭐</span>
-                      <span>⭐</span>
-                      <span>⭐</span>
-                    </div>
-                    <span className={styles.chefRatingNumber}>{chef.rating}</span>
-                  </div>
-                  
-                  <div className={styles.chefStats}>
-                    <div className={styles.chefStat}>
-                      <span className={styles.chefStatNumber}>{chef.courses}</span>
-                      <span className={styles.chefStatLabel}>Cursos</span>
-                    </div>
-                    <div className={styles.chefStat}>
-                      <span className={styles.chefStatNumber}>{chef.students}</span>
-                      <span className={styles.chefStatLabel}>Estudantes</span>
-                    </div>
                   </div>
                 </div>
               </div>
