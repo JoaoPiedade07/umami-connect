@@ -1,18 +1,19 @@
 "use client";
 import Image from "next/image";
 import styles from "./NavBar.module.css";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useUser } from '@clerk/nextjs';
 
 export default function NavBar() {
 
   const router = useRouter();
+  const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isChef, setIsChef] = useState(false);
   const { user, isLoaded } = useUser();
-  const tabOpen = useState();
+
 
   // Verifica se o usuário é chef
   useEffect(() => {
@@ -117,11 +118,11 @@ export default function NavBar() {
         </form>
       </div>
       <div className={styles.Menu}>
-        <a href="/">Home</a>
+        <a href="/" className={pathname === '/' ? styles.active : ""}>Home</a>
         <a href="#" onClick={(e) => { e.preventDefault(); handleDashboard(); }}>Dashboard</a>
-        <a href="/classes">Classes</a>
-        <a href="/chefs">Chefs</a>
-        <a href="/contact">Contact</a>
+        <a href="/classes" className={pathname.startsWith("/classes") ? styles.active : ""}>Classes</a>
+        <a href="/chefs" className={pathname.startsWith("/chefs") ? styles.active : ""}>Chefs</a>
+        <a href="/contact" className={pathname.startsWith("/contact") ? styles.active : ""}>Contact</a>
       </div>
       <div className={styles.NavButtons}>
       <button onClick={handleUserClick}>
