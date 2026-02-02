@@ -2,65 +2,44 @@
 import Image from "next/image";
 import styles from "./NavBar.module.css";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import { useUser } from '@clerk/nextjs';
+import { useState, useCallback } from "react";
+import { useUser } from "@clerk/nextjs";
+import { useChefStatus, useDebounce } from "@/lib/hooks";
 
 export default function NavBar() {
-
   const router = useRouter();
   const pathname = usePathname();
+  const { user } = useUser();
+  const isChef = useChefStatus();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [isChef, setIsChef] = useState(false);
-  const { user, isLoaded } = useUser();
+  const debouncedSearch = useDebounce(searchQuery, 300);
 
-
-  // Verifica se o usuário é chef
-  useEffect(() => {
-    const checkChefStatus = async () => {
-      if (user) {
-        // Verifica através dos metadados do Clerk
-        const roleFromMetadata = user.publicMetadata?.role === 'CHEF';
-        
-        // Verifica através da URL atual (se está em rota de chef)
-        const isOnChefRoute = window.location.pathname.includes('/chef/');
-        
-        // Verifica se o usuário fez login através da rota de chef
-        const isChefLogin = localStorage.getItem('isChefLogin') === 'true';
-        
-        setIsChef(roleFromMetadata || isOnChefRoute || isChefLogin);
-      }
-    };
-
-    checkChefStatus();
-  }, [user]);
-
-  const handleUserClick = ()  => {
+  const handleUserClick = useCallback(() => {
     router.push("/auth/login");
-  };
+  }, [router]);
 
-// Se a pessoa que esta logada é um chef então na navbar vai para o camigo de chef se não vai para o user dashboard
-  const handleDashboard = () => {
-      if(!user) {
-        router.push("/auth/login");
-      }
-      else {
-        if(isChef) {
-          router.push("/chef/dashboard");
-        } else {
-          router.push("/dashboard");
-        }
-      }
-  }
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      // Aqui você pode implementar a lógica de busca
-      console.log("Searching for:", searchQuery);
-      // Exemplo: router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+  const handleDashboard = useCallback(() => {
+    if (!user) {
+      router.push("/auth/login");
+    } else if (isChef) {
+      router.push("/chef/dashboard");
+    } else {
+      router.push("/dashboard");
     }
-  };
+  }, [user, isChef, router]);
+
+  const handleSearch = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (debouncedSearch.trim()) {
+        // Exemplo: router.push(`/search?q=${encodeURIComponent(debouncedSearch)}`);
+        console.log("Searching for:", debouncedSearch);
+      }
+    },
+    [debouncedSearch]
+  );
 
   return (
     <div className={styles.navBar}>
@@ -125,7 +104,7 @@ export default function NavBar() {
         <a href="/contact" className={pathname.startsWith("/contact") ? styles.active : ""}>Contact</a>
       </div>
       <div className={styles.NavButtons}>
-      <button onClick={handleUserClick}>
+      <button onClick={handleUserClick} >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
