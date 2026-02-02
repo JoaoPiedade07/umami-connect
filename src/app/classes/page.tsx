@@ -1,10 +1,21 @@
 "use client";
 import styles from "./classes.module.css";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ClassesPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const router = useRouter();
+
+  const handleCourseClick = useCallback(
+    (courseId: number) => {
+      router.push(`/course/${courseId}`);
+    },
+    [router]
+  );
+
+  const setCategory = useCallback((id: string) => setSelectedCategory(id), []); 
 
   const categories = [
     { id: "all", name: "Todas as Categorias" },
@@ -19,7 +30,7 @@ export default function ClassesPage() {
       id: 1,
       title: "Curso Completo de Receitas Japonesas",
       category: "japanese",
-      image: "/Base.jpg",
+      image: "/culinaria.webp",
       rating: 4.6,
       views: "84.4k",
       duration: "20.6 horas",
@@ -47,7 +58,7 @@ export default function ClassesPage() {
       id: 3,
       title: "Ramen Autêntico: Caldos e Noodles",
       category: "ramen",
-      image: "/Base.jpg",
+      image: "/ramen.webp",
       rating: 4.7,
       views: "67.8k",
       duration: "12.4 horas",
@@ -61,7 +72,7 @@ export default function ClassesPage() {
       id: 4,
       title: "Sobremesas Japonesas Tradicionais",
       category: "desserts",
-      image: "/Base.jpg",
+      image: "/sobremesas.webp",
       rating: 4.5,
       views: "45.2k",
       duration: "8.7 horas",
@@ -75,7 +86,7 @@ export default function ClassesPage() {
       id: 5,
       title: "Técnicas Avançadas de Sashimi",
       category: "sushi",
-      image: "/sushi.jpg",
+      image: "/altacozinha.webp",
       rating: 4.9,
       views: "38.9k",
       duration: "10.2 horas",
@@ -89,7 +100,7 @@ export default function ClassesPage() {
       id: 6,
       title: "Wagyu e Técnicas de Grelhado",
       category: "japanese",
-      image: "/Base.jpg",
+      image: "/wagyu.png",
       rating: 4.8,
       views: "29.7k",
       duration: "6.5 horas",
@@ -105,7 +116,7 @@ export default function ClassesPage() {
     {
       name: "Hiroshi Tanaka",
       specialty: "Culinária Japonesa Tradicional",
-      image: "/Base.jpg",
+      image: "/chef.jpg",
       rating: 4.9,
       courses: 12,
       students: 2500
@@ -113,7 +124,7 @@ export default function ClassesPage() {
     {
       name: "Yuki Nakamura",
       specialty: "Técnicas de Sushi",
-      image: "/sushi.jpg",
+      image: "/chef2.jpeg",
       rating: 4.8,
       courses: 8,
       students: 1800
@@ -121,16 +132,20 @@ export default function ClassesPage() {
     {
       name: "Kenji Sato",
       specialty: "Ramen e Noodles",
-      image: "/Base.jpg",
+      image: "/chef3.jpg",
       rating: 4.7,
       courses: 6,
       students: 1200
     }
   ];
 
-  const filteredCourses = selectedCategory === "all" 
-    ? courses 
-    : courses.filter(course => course.category === selectedCategory);
+  const filteredCourses = useMemo(
+    () =>
+      selectedCategory === "all"
+        ? courses
+        : courses.filter((course) => course.category === selectedCategory),
+    [selectedCategory]
+  );
 
   return (
     <div className={styles.page}>
@@ -197,7 +212,7 @@ export default function ClassesPage() {
                 className={`${styles.categoryButton} ${
                   selectedCategory === category.id ? styles.active : ""
                 }`}
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => setCategory(category.id)}
               >
                 {category.name}
               </button>
@@ -214,7 +229,7 @@ export default function ClassesPage() {
           
           <div className={styles.coursesGrid}>
             {filteredCourses.map((course) => (
-              <div key={course.id} className={styles.courseCard}>
+              <div key={course.id} className={styles.courseCard} onClick={() => handleCourseClick(course.id)}>
                 <div className={styles.courseImageContainer}>
                   <Image
                     src={course.image}
