@@ -1,10 +1,12 @@
 "use client";
 import styles from "./chefs.module.css";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 
 export default function ChefsPage() {
   const [selectedSpecialty, setSelectedSpecialty] = useState("all");
+
+  const setSpecialty = useCallback((id: string) => setSelectedSpecialty(id), []);
 
   const specialties = [
     { id: "all", name: "Todas as Especialidades" },
@@ -36,7 +38,7 @@ export default function ChefsPage() {
       name: "Yuki Nakamura",
       specialty: "sushi",
       specialtyName: "Técnicas de Sushi",
-      image: "/sushi.jpg",
+      image: "/chef.jpg",
       rating: 4.8,
       experience: "18 anos",
       courses: 8,
@@ -51,7 +53,7 @@ export default function ChefsPage() {
       name: "Kenji Sato",
       specialty: "ramen",
       specialtyName: "Ramen & Noodles",
-      image: "/Base.jpg",
+      image: "/chef2.jpeg",
       rating: 4.7,
       experience: "15 anos",
       courses: 6,
@@ -66,7 +68,7 @@ export default function ChefsPage() {
       name: "Aiko Yamamoto",
       specialty: "desserts",
       specialtyName: "Sobremesas Japonesas",
-      image: "/Base.jpg",
+      image: "/chef3.jpg",
       rating: 4.6,
       experience: "12 anos",
       courses: 5,
@@ -96,7 +98,7 @@ export default function ChefsPage() {
       name: "Sakura Ito",
       specialty: "japanese",
       specialtyName: "Culinária Vegetariana Japonesa",
-      image: "/Base.jpg",
+      image: "/chef2.jpeg",
       rating: 4.5,
       experience: "10 anos",
       courses: 4,
@@ -108,9 +110,13 @@ export default function ChefsPage() {
     }
   ];
 
-  const filteredChefs = selectedSpecialty === "all" 
-    ? chefs 
-    : chefs.filter(chef => chef.specialty === selectedSpecialty);
+  const filteredChefs = useMemo(
+    () =>
+      selectedSpecialty === "all"
+        ? chefs
+        : chefs.filter((chef) => chef.specialty === selectedSpecialty),
+    [selectedSpecialty]
+  );
 
   return (
     <div className={styles.page}>
@@ -147,7 +153,7 @@ export default function ChefsPage() {
                 className={`${styles.specialtyButton} ${
                   selectedSpecialty === specialty.id ? styles.active : ""
                 }`}
-                onClick={() => setSelectedSpecialty(specialty.id)}
+                onClick={() => setSpecialty(specialty.id)}
               >
                 {specialty.name}
               </button>
