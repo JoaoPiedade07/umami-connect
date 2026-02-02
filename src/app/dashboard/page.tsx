@@ -73,7 +73,7 @@ export default async function DashboardPage() {
             <div className={styles.courseCard}>
               <div className={styles.courseImageContainer}>
                 <Image 
-                  src="/sushi.jpg" 
+                  src="/culinaria.webp" 
                   alt="Curso de Sushi" 
                   width={400}
                   height={200}
@@ -123,7 +123,7 @@ export default async function DashboardPage() {
              <div className={styles.chefCard}>
                <div className={styles.chefImageContainer}>
                  <Image 
-                   src="/Base.jpg" 
+                   src="/chef3.jpg" 
                    alt="Chef Hiroshi Tanaka" 
                    width={60}
                    height={60}
@@ -152,7 +152,7 @@ export default async function DashboardPage() {
              <div className={styles.chefCard}>
                <div className={styles.chefImageContainer}>
                  <Image 
-                   src="/sushi.jpg" 
+                   src="/chef.jpg" 
                    alt="Chef Yuki Nakamura" 
                    width={60}
                    height={60}
