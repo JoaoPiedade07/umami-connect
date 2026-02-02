@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import styles from './dropDown.module.css';
+import React, { useState, useRef, useCallback } from "react";
+import styles from "./dropDown.module.css";
+import { useClickOutside } from "@/lib/hooks";
 
 interface Language {
   code: string;
@@ -9,12 +10,12 @@ interface Language {
 }
 
 const languages: Language[] = [
-  { code: 'pt', name: 'Português'},
-  { code: 'en', name: 'English'},
-  { code: 'de', name: 'Deutsch'},
-  { code: 'ja', name: '日本語'},
-  { code: 'ko', name: '한국어'},
-  { code: 'zh', name: '中文'},
+  { code: "pt", name: "Português" },
+  { code: "en", name: "English" },
+  { code: "de", name: "Deutsch" },
+  { code: "ja", name: "日本語" },
+  { code: "ko", name: "한국어" },
+  { code: "zh", name: "中文" },
 ];
 
 const Dropdown: React.FC = () => {
@@ -22,25 +23,14 @@ const Dropdown: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<Language>(languages[0]);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
+  const handleClose = useCallback(() => setIsOpen(false), []);
+  useClickOutside(dropdownRef, handleClose);
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  const handleLanguageSelect = (language: Language) => {
+  const handleLanguageSelect = useCallback((language: Language) => {
     setSelectedLanguage(language);
     setIsOpen(false);
-    // Aqui você pode adicionar lógica para mudar o idioma da aplicação
     console.log(`Idioma selecionado: ${language.name}`);
-  };
+  }, []);
 
   return (
     <div className={styles.languageDropdown} ref={dropdownRef}>
