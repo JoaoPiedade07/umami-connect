@@ -3,15 +3,15 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import chefStyle from './dashboard/dashboard.module.css'
+import { useCallback } from "react";
+import chefStyle from "./dashboard/dashboard.module.css";
 
 export default function Home() {
-
   const router = useRouter();
-    const handleUserClick = () => {
-        router.push("/pricing");
-        console.log("Tela Pricing");
-    }
+
+  const handleUserClick = useCallback(() => {
+    router.push("/pricing");
+  }, [router]);
   
   return (
     <div className={styles.page}>
@@ -31,7 +31,7 @@ export default function Home() {
             <div className={styles.courseImageContainer}>
               <div className={styles.courseImage}>
                 <Image 
-                  src="/Base.jpg" 
+                  src="/altacozinha.webp" 
                   alt="Logo" 
                   width={400} // Largura desejada
                   height={200} // Altura desejada
@@ -63,7 +63,7 @@ export default function Home() {
           <div className={styles.courseCard}>
             <div className={styles.courseImageContainer}>
               <div className={styles.courseImage}>
-                <Image src="/Base.jpg" alt="Logo" width={500} height={200}/>
+                <Image src="/wagyu.png" alt="Logo" width={500} height={200}/>
               </div>
             </div>
             
@@ -90,7 +90,7 @@ export default function Home() {
           <div className={styles.courseCard}>
             <div className={styles.courseImageContainer}>
               <div className={styles.courseImage}>
-                <Image src="/Base.jpg" alt="Logo" width={500} height={200}/>
+                <Image src="/sobremesas.webp" alt="Logo" width={500} height={200}/>
               </div>
             </div>
             
@@ -154,7 +154,7 @@ export default function Home() {
              <div className={chefStyle.chefCard}>
                <div className={chefStyle.chefImageContainer}>
                  <Image 
-                   src="/sushi.jpg" 
+                   src="/chef.jpg" 
                    alt="Chef Yuki Nakamura" 
                    width={60}
                    height={60}
@@ -183,7 +183,7 @@ export default function Home() {
              <div className={chefStyle.chefCard}>
                <div className={chefStyle.chefImageContainer}>
                  <Image 
-                   src="/Base.jpg" 
+                   src="/chef3.jpg" 
                    alt="Chef Kenji Sato" 
                    width={60}
                    height={60}
