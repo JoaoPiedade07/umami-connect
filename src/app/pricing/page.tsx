@@ -1,12 +1,13 @@
-"use client"
+"use client";
 import styles from "./pricing.module.css";
 import PricingList from "./pricingList";
-import { useState } from "react";
-
+import { useState, useCallback } from "react";
 
 export default function Princing() {
+  const [isHovered, setIsHovered] = useState(false);
 
-    const [isHovered, setIsHovered] = useState(false);
+  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
+  const handleMouseLeave = useCallback(() => setIsHovered(false), []);
 
     return (
         <div className={styles.pricingContainer}>
@@ -51,8 +52,8 @@ export default function Princing() {
                     <div className={styles.cardBtn}>
                         <button className={styles.Btn}>Get Pro</button>
                         <a
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
                             style={{ display: "flex", alignItems: "center" }}
                             >
                             Saiba mais
