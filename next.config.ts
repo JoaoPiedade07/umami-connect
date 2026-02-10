@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  turbopack: {
+    // Especifique explicitamente a raiz do projeto
+    root: "/Users/joaopiedade/Desktop/Projects/Startup/umami-connect"
+  }
 };
 
 export default nextConfig;
